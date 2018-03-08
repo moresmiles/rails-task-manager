@@ -1,1 +1,13 @@
 <h1> Hi <%= current_user.email %> </h1>
+<h1> Welcome to Rails Task Manager </h1>
+
+<% if !current_user%>
+  <h3> Please Sign Up or Sign in </h3>
+  <li> <%= link_to "Sign Up", new_user_registration_path %> </li>
+  <li> <%= link_to "Sign In", new_user_session_path %> </li>
+<% else %>
+  <h3> Welcome <%= current_user.email%>!<h3>
+    <p> <%= link_to "Take a look at your existing lists", lists_path %> </p>
+    <p> <%= link_to "Or create a new list", new_list_path %> </p><br>
+    <li> <%= link_to "Sign Out", destroy_user_session_path, :method => 'delete' %> </li>
+<% end %>
