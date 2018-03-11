@@ -7,7 +7,7 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
     if @list.save
-      redirect_to lists_path(@list)
+      redirect_to list_path(@list)
     else
       flash[:alert] = "Unable to create list, please try again"
       redirect_to new_list_path
@@ -15,6 +15,10 @@ class ListsController < ApplicationController
   end
 
   def show
+    @list = List.find(params[:id])
+  end
+
+  def index
     @lists = List.all
   end
 
