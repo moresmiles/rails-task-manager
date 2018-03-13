@@ -1,0 +1,16 @@
+<h1> <%= @group.name %> </h1>
+
+<div>
+  Members:
+  <ul>
+    <% @group.users.each do |user| %>
+      <li><%= user.email%></li>
+    <% end %>
+  </ul>
+</div>
+
+  <% @group.lists.each do |list| %>
+  <li> <%= link_to list.name, list_path(list) %></li>
+  <%end%>
+<br>
+<%= link_to 'Make a New List', new_list_path %>
