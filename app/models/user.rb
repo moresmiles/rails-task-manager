@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   has_many :tasks, inverse_of: :user
   has_many :lists, through: :tasks
+  has_many :group_users, inverse_of: :user
+  has_many :groups, through: :group_users
 end
