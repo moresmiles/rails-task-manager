@@ -2,6 +2,6 @@
 
 <% @lists.each do |list| %>
 <ul>
-<li><%= link_to list.name, list_path(list) %></li>
+  <li><%= link_to list.name, group_list_path(list) %></li>
 </ul>
 <% end %>

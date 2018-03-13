@@ -8,10 +8,10 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
     if @list.save
-      redirect_to list_path(@list)
+      redirect_to group_list_path(@list)
     else
       flash[:alert] = "Unable to create list, please try again"
-      redirect_to new_list_path
+      redirect_to new_group_list_path
     end
   end
 

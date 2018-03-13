@@ -10,7 +10,7 @@
 </div>
 
   <% @group.lists.each do |list| %>
-  <li> <%= link_to list.name, list_path(list) %></li>
+  <li> <%= link_to list.name, group_list_path(list) %></li>
   <%end%>
 <br>
-<%= link_to 'Make a New List', new_list_path %>
+<%= link_to 'Make a New List', new_group_list_path %>
