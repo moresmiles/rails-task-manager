@@ -1,14 +1,16 @@
 class ListsController < ApplicationController
 
   def new
-    @list = List.new
+    @group = Group.find(params[:group_id])
+    @list = @group.lists.build
     @list.tasks.build
   end
 
   def create
-    @list = List.new(list_params)
+    @group = Group.find(params[:group_id])
+    @list = @group.lists.build(list_params)
     if @list.save
-      redirect_to group_list_path(@list)
+      redirect_to group_list_path(@group, @list)
     else
       flash[:alert] = "Unable to create list, please try again"
       redirect_to new_group_list_path
@@ -26,7 +28,7 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:name, task_ids:[], tasks_attributes: [:id, :name, :list_id])
+    params.require(:list).permit(:name, :group_id, task_ids:[], tasks_attributes: [:id, :name, :list_id])
   end
 
 end
