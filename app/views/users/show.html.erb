@@ -1,0 +1,20 @@
+<div class="container">
+  <h1> Your Groups </h1>
+  <div class="card-deck mb-3 text-center">
+    <div class="card mb-4 box-shadow">
+      <div class="card-header">
+        <% current_user.groups.each do |group| %>
+        <h4 class="my-0 font-weight-normal"><%=group.name%></h4>
+      </div>
+      <div class="card-body">
+        <ul class="list-unstyled mt-3 mb-4">
+          <% group.lists.each do |list|%>
+          <li><%= link_to list.name, group_list_path(group, list)%></li>
+          <% end %>
+        </ul>
+        <a href="<%=new_group_list_path(group)%>" class="btn btn-md btn-block btn-outline-primary">Make a new list</a>
+      </div>
+    </div>
+    <%= link_to group.name, group_path(group) %>
+
+<% end %>
