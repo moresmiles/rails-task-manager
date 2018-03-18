@@ -1,16 +1,13 @@
 class List < ApplicationRecord
-  has_many :tasks, inverse_of: :list
+  has_many :tasks
   has_many :users, through: :tasks
-  belongs_to :group
+  belongs_to :group, optional: true
   validates :name, presence: true
 
  def tasks_attributes=(tasks_attributes)
     tasks_attributes.values.each do |task_attribute|
       if task_attribute[:name].present?
-        task = Task.find_or_create_by(name: task_attribute[:name])
-        if !self.tasks.include?(task)
-          self.tasks << task
-        end
+        task = self.tasks.build(name: task_attribute[:name])
       end
     end
   end
