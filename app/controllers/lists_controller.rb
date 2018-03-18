@@ -3,7 +3,9 @@ class ListsController < ApplicationController
   def new
     @group = Group.find(params[:group_id])
     @list = @group.lists.build
-    @list.tasks.build
+    2.times do
+      @list.tasks.build
+    end
   end
 
   def create
@@ -13,6 +15,24 @@ class ListsController < ApplicationController
       redirect_to group_list_path(@group, @list)
     else
       flash[:alert] = "Unable to create list, please try again"
+      redirect_to new_group_list_path
+    end
+  end
+
+  def edit
+    @group = List.find_by(params[:group_id])
+    @list = List.find(params[:id])
+    @list.tasks.build
+  end
+
+  def update
+    @group = Group.find_by(params[:group_id])
+    @list = List.find(params[:id])
+    @list.update(list_params)
+    if @list.save
+      redirect_to group_list_path(@group, @list)
+    else
+      flash[:alert] = "Unable to edit list, please try again"
       redirect_to new_group_list_path
     end
   end
@@ -28,7 +48,7 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:name, :group_id, task_ids:[], tasks_attributes: [:id, :name, :list_id])
+    params.require(:list).permit(:name, :group_id, task_ids:[], tasks_attributes: [:name])
   end
 
 end
