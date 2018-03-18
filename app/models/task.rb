@@ -1,8 +1,13 @@
 class Task < ApplicationRecord
-  belongs_to :user, inverse_of: :tasks, optional: true
-  belongs_to :list, inverse_of: :tasks, optional: true
 
-  validates :name, presence: true
-  validates :name, uniqueness: true
+  belongs_to :user, optional: true
+  belongs_to :list, optional: true
 
+  def completed?
+    if self.status == 0
+      "Incomplete"
+    elsif self.status == 1
+      "Done!"
+    end
+  end
 end
