@@ -1,2 +1,22 @@
 <h1> Edit Group </h1>
-<%= render 'form' %>
+
+<%= form_for @group do |f| %>
+<p>
+<%= f.label :name, 'Group Name' %>
+<%= f.text_field :name %>
+</p>
+<fieldset>
+  <legend> Add a User by Email Address </legend>
+  <%= f.fields_for :users do |user_finder| %>
+    <%= user_finder.label :email %>
+    <%= user_finder.email_field :email %>
+  <% end %>
+</fieldset>
+<%= f.submit %>
+<br>
+<fieldset>
+  <legend> Remove User(s) from group </legend>
+  <%= f.collection_check_boxes :user_ids, @group.users, :id, :email %><br>
+  <%= f.submit 'Remove User(s)'%>
+</fieldset>
+<% end %>
