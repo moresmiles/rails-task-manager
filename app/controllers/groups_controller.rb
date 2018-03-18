@@ -32,8 +32,13 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
-    @group.update(group_params)
-    redirect_to group_path(@group)
+    if params[:commit] == 'Update Group'
+      @group.update(group_params)
+    elsif params[:commit] == 'Remove User(s)'
+      users = User.where(id: params[:group][:user_ids]).all
+      @group.users.delete(users)
+    end
+    redirect_to user_path(current_user)
   end
 
   private
