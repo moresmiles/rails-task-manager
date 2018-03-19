@@ -1,20 +1,35 @@
-<div class="container">
-  <h1> Your Groups </h1>
+  <h1 class="text-center"> Your Groups </h1><br>
+  <% current_user.groups.each do |group| %>
+  <div class="container">
   <div class="card-deck mb-3 text-center">
     <div class="card mb-4 box-shadow">
       <div class="card-header">
-        <% current_user.groups.each do |group| %>
         <h4 class="my-0 font-weight-normal"><%=group.name%></h4>
       </div>
-      <div class="card-body">
-        <ul class="list-unstyled mt-3 mb-4">
-          <% group.lists.each do |list|%>
-          <li><%= link_to list.name, group_list_path(group, list)%></li>
-          <% end %>
-        </ul>
-        <a href="<%=new_group_list_path(group)%>" class="btn btn-md btn-block btn-outline-primary">Make a new list</a>
+      <div class="row">
+      <div class="col-sm-6">
+          <div class="card-body">
+            <h5 class="card-title">People in this group</h5>
+            <ul class="list-group list-group-flush">
+            <% group.users.each do |user|%>
+            <li class="list-group-item"><%=user.email%> </li>
+            <% end %>
+            </ul>
+            <br>
+            <a href="<%=edit_group_path(group)%>" class="btn btn-primary">Edit this group</a>
+        </div>
+      </div>
+      <div class="col-sm-6">
+          <div class="card-body">
+            <h5 class="card-title">Shared lists</h5>
+            <ul class="list-group list-group-flush">
+            <% group.lists.each do |list|%>
+            <li class="list-group-item"><%=link_to list.name, group_list_path(group, list) %></li>
+            <% end %>
+            </ul>
+            <br>
+            <a href="<%=new_group_list_path(group)%>" class="btn btn-primary">Create a new list</a>
+        </div>
       </div>
     </div>
-    <%= link_to group.name, group_path(group) %>
-
 <% end %>
