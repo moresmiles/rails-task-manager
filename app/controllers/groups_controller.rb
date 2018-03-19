@@ -18,14 +18,6 @@ class GroupsController < ApplicationController
     end
   end
 
-  def index
-    @groups = Group.all
-  end
-
-  def show
-    @group = Group.find(params[:id])
-  end
-
   def edit
     @group = Group.find(params[:id])
   end
@@ -38,6 +30,12 @@ class GroupsController < ApplicationController
       users = User.where(id: params[:group][:user_ids]).all
       @group.users.delete(users)
     end
+    redirect_to user_path(current_user)
+  end
+
+  def destroy
+    @group = Group.find(params[:id])
+    @group.destroy
     redirect_to user_path(current_user)
   end
 
