@@ -1,0 +1,27 @@
+<% if @list.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@list.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+    <ul>
+    <% @list.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<p>
+<%= f.label :name, 'List Name' %>
+<%= f.text_field :name %>
+</p>
+<fieldset>
+  <legend> Create a New Task(s) </legend>
+    <%= f.fields_for :tasks do |task_builder| %>
+    <%= task_builder.label :name, 'Task Name' %>
+    <%= task_builder.text_field :name %>
+    <% end %>
+</fieldset>
+<br>
+
+
+<%= f.submit %>

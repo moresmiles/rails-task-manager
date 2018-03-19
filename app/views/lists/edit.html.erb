@@ -1,0 +1,6 @@
+<h2> Edit a List </h2>
+<%= form_for [@group, @list], url: group_list_path(@group, @list), method: 'patch' do |f| %>
+<%= render 'form', f: f %>
+<% end %>
+<br>
+<%= link_to "Delete List", group_list_path, method: :delete,  data: { confirm: "Are you sure you want to delete #{@list.name}?" }, :class => 'btn btn-danger btn-mini' %>
