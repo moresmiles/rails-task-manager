@@ -14,7 +14,7 @@ class ListsController < ApplicationController
     if @list.save
       redirect_to group_list_path(@group, @list)
     else
-      flash[:alert] = "Unable to create list, please try again"
+      flash[:alert] = "List name can not be blank, please try again"
       redirect_to new_group_list_path
     end
   end
@@ -46,6 +46,7 @@ class ListsController < ApplicationController
     @list.destroy
     redirect_to user_path(current_user)
   end
+
   private
 
   def list_params

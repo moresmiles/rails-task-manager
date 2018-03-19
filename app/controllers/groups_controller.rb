@@ -13,7 +13,7 @@ class GroupsController < ApplicationController
       @group.users << current_user
       redirect_to group_path(@group)
     else
-      flash[:alert] = "Unable to create group, please try again"
+      flash[:alert] = "Group name can not be blank, please try again"
       redirect_to new_group_path
     end
   end
