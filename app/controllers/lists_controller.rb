@@ -41,10 +41,11 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
   end
 
-  def index
-    @lists = List.all
+  def destroy
+    @list = List.find(params[:id])
+    @list.destroy
+    redirect_to user_path(current_user)
   end
-
   private
 
   def list_params
