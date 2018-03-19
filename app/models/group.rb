@@ -2,6 +2,7 @@ class Group < ApplicationRecord
   has_many :group_users, inverse_of: :group
   has_many :users, through: :group_users
   has_many :lists
+  validates :name, presence: true
 
 
   def users_attributes=(users_attributes)
