@@ -19,4 +19,35 @@
     </p>
   </div>
   </section>
+
+<div class="container">
+<div class="card-deck mb-3 text-center">
+  <div class="card mb-4 box-shadow">
+    <div class="card-header">
+      <h4 class="my-0 font-weight-normal">Your Incompleted Tasks</h4>
+    </div>
+    <div class="row">
+    <div class="col-sm-6">
+        <div class="card-body">
+          <h5 class="card-title">Incomplete Tasks</h5>
+          <ul class="list-group list-group-flush">
+            <% current_user.tasks.incomplete.each do |task| %>
+          <li class="list-group-item"><%=task.name%> </li>
+          <% end %>
+          </ul>
+          <br>
+      </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card-body">
+          <h5 class="card-title">Corresponding List</h5>
+          <ul class="list-group list-group-flush">
+            <% current_user.tasks.incomplete.each do |task| %>
+          <li class="list-group-item"><%=link_to task.list.name, group_list_path(task.list.group, task.list)%></li>
+          <% end %>
+          </ul>
+          <br>
+      </div>
+    </div>
+  </div>
 <% end %>
