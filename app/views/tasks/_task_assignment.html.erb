@@ -1,0 +1,9 @@
+<% if task.user %>
+  <%= task.user.email %>
+<% else %>
+  <%= 'Task is currently unassigned'%>
+  <%= form_for(task, method: 'patch') do |f|%>
+      <%= f.collection_select :user_id, @list.group.users, :id, :email %><br>
+  <%= f.submit 'Assign'%>
+  <% end %>
+<% end %>

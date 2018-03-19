@@ -1,0 +1,8 @@
+<% if task.status == 0 %>
+  <%= form_for(task, method: 'patch') do |f| %>
+    <%= f.check_box :status, :checked => "1" %>
+    <%= f.submit 'Mark Completed'%>
+  <% end %>
+<% else %>
+  <%= link_to "Delete Item", task_path(task), method: :delete,  data: { confirm: "Are you sure you want to delete #{task.name}?" }, :class => 'btn btn-danger btn-mini' %>
+<% end %>

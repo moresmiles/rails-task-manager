@@ -1,4 +1,4 @@
-<h1><%= @list.name %></h1>
+<h1 class="text-center"><%= @list.name %></h1>
 
 <table class="table table-striped table-bordered">
   <thead>
@@ -6,24 +6,16 @@
       <th scope="col">Task Name</th>
       <th scope="col">Assigned To</th>
       <th scope="col">Status</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @list.tasks.each do |task|%>
     <tr>
       <th> <%=task.name%> </th>
-      <td>
-        <% if task.user_id %>
-          <%= task.user.email %>
-        <% else %>
-          <%= 'Task is currently unassigned'%>
-          <%= form_for(task, method: 'patch') do |f|%>
-              <%= f.collection_select :user_id, @list.group.users, :id, :email %><br>
-      	  <%= f.submit 'Assign'%>
-          <% end %>
-        <% end %>
-      </td>
-      <td><%=task.completed?%></td>
+      <td> <%= render "tasks/task_assignment", :task => task %> </td>
+      <td> <%= task.task_status %></td>
+      <td><%= render "tasks/task_status", :task => task %></td>
     </tr>
     <% end %>
   </tbody>
