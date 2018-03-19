@@ -1,14 +1,15 @@
 # Rails Task Manager
 
-This is a group task management app made for a rails project at the Flatiron School.
+A group task management app made for a rails project at the Flatiron School.
 
-* You can create Groups, Lists, and Tasks
+* You can create, read, update, and delete Groups, Lists, and Tasks
 * Keep track of all your tasks across all groups
 
 ## Usage
 
-To Install locally: -fork the repo
+To Install locally:
 
+* Fork the repo
 * bundle install
 * rake db:migrate
 * rails s browse to http://localhost:3000
