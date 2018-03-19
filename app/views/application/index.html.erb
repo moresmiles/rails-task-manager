@@ -1,13 +1,21 @@
-<h1> Hi <%= current_user.email %> </h1>
-<h1> Welcome to Rails Task Manager </h1>
-
 <% if !current_user%>
-  <h3> Please Sign Up or Sign in </h3>
-  <li> <%= link_to "Sign Up", new_user_registration_path %> </li>
-  <li> <%= link_to "Sign In", new_user_session_path %> </li>
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading">Welcome to Rails Task Manager</h1>
+      <p class="lead text-muted">An app to help you manage your tasks, made with Rails</p>
+      <a href="<%=new_user_registration_path %>" class="btn btn-primary my-2">Sign Up</a>
+      <a href="<%=new_user_session_path%>" class="btn btn-primary my-2">Sign In</a>
+  </div>
+</section>
+
 <% else %>
-  <h3> Welcome <%= current_user.email%>!<h3>
-    <p> <%= link_to "Take a look at your existing lists", lists_path %> </p>
-    <p> <%= link_to "Or create a new list", new_list_path %> </p><br>
-    <li> <%= link_to "Sign Out", destroy_user_session_path, :method => 'delete' %> </li>
+
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading">Welcome <%= current_user.email%>!</h1>
+      <a href="<%=user_path(current_user)%>" class="btn btn-primary my-2">Your Groups</a>
+      <a href="<%=new_group_path%>" class="btn btn-secondary my-2">Create a new group</a>
+    </p>
+  </div>
+  </section>
 <% end %>
