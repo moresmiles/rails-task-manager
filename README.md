@@ -1,24 +1,22 @@
-# README
+# Rails Task Manager
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a group task management app made for a rails project at the Flatiron School.
 
-Things you may want to cover:
+* You can create Groups, Lists, and Tasks
+* Keep track of all your tasks across all groups
 
-* Ruby version
+## Usage
 
-* System dependencies
+To Install locally: -fork the repo
 
-* Configuration
+* bundle install
+* rake db:migrate
+* rails s browse to http://localhost:3000
 
-* Database creation
+## Contributing
 
-* Database initialization
+Bug reports and pull requests are welcome on GitHub at https://github.com/moresmiles/rails-task-manager.
 
-* How to run the test suite
+## License
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Rails-Task-Manager is licensed under the MIT license. (http://opensource.org/licenses/MIT)
