@@ -1,4 +1,7 @@
 <%= form_for @group do |f| %>
+
+<%= render 'layouts/form_errors', form: @group %>
+
 <p>
 <%= f.label :name, 'Group Name' %>
 <%= f.text_field :name %>
@@ -6,10 +9,8 @@
 <fieldset>
   <legend> Add a User by Email Address </legend>
   <%= f.fields_for :users do |user_finder| %>
-    <% if !@group.new_record? %>
       <%= user_finder.label :email %>
-      <%= user_finder.email_field :email, value: nil %>
-    <% end %>
+      <%= user_finder.email_field :email%>
   <% end %>
 </fieldset>
 <%= f.submit %>
