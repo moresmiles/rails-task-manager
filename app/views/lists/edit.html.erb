@@ -4,3 +4,5 @@
 <% end %>
 <br>
 <%= link_to "Delete List", group_list_path, method: :delete,  data: { confirm: "Are you sure you want to delete #{@list.name}?" }, :class => 'btn btn-danger btn-mini' %>
+<br><br>
+<%= link_to 'Back', group_list_path(@group, @list), :class => 'btn btn-primary btn-mini' %>

@@ -1,3 +1,5 @@
 <h1> Edit Group </h1>
 <%= render 'form' %>
 <%= link_to "Delete Group", group_path, method: :delete,  data: { confirm: "Are you sure you want to delete #{@group.name}?" }, :class => 'btn btn-danger btn-mini' %>
+<br><br>
+<%= link_to 'Back', user_path(current_user), :class => 'btn btn-primary btn-mini' %>
