@@ -11,7 +11,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     if @group.save
       @group.users << current_user
-      redirect_to group_path(@group)
+      redirect_to user_path(current_user)
     else
       flash[:alert] = "Group name can not be blank, please try again"
       redirect_to new_group_path
