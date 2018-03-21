@@ -10,7 +10,11 @@
   <legend> Add a User by Email Address </legend>
   <%= f.fields_for :users do |user_finder| %>
       <%= user_finder.label :email %>
+      <% if !@group.new_record? %>
+      <%= user_finder.email_field :email, value: nil%>
+      <% else %>
       <%= user_finder.email_field :email%>
+      <% end %>
   <% end %>
 </fieldset>
 <%= f.submit %>

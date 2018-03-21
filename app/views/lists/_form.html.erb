@@ -7,7 +7,11 @@
   <legend> Create a New Task(s) </legend>
     <%= f.fields_for :tasks do |task_builder| %>
     <%= task_builder.label :name, 'Task Name' %>
-    <%= task_builder.text_field :name %>
+      <% if !@list.new_record? %>
+      <%= task_builder.text_field :name, value: nil %>
+      <% else %>
+      <%= task_builder.text_field :name%>
+      <% end %>
     <% end %>
 </fieldset>
 <br>
