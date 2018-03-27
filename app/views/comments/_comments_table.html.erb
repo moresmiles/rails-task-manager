@@ -11,7 +11,7 @@
       <% @list.comments.each do |comment| %>
       <td> <%=comment.user.email%> </td>
       <td> <%=comment.content%> </td>
-      <th> <%= link_to 'edit comment', edit_comment_path(comment)%></th>
+      <th> <%= link_to 'edit comment', edit_comment_path(comment) if comment.user == current_user %></th>
     </tr>
     <% end %>
   </tbody>
