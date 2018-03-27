@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :lists, through: :tasks
   has_many :group_users, inverse_of: :user
   has_many :groups, through: :group_users
+  has_many :comments
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
