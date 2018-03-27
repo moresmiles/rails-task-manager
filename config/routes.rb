@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   end
     resources :tasks, only: [:edit, :update, :destroy]
 
+  resources :comments, only: [:new, :create, :edit, :update, :destroy]
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
