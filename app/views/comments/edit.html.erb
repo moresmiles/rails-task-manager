@@ -1,0 +1,7 @@
+<h3> Edit Comment </h3>
+<%= form_tag({controller: "comments", action: "update"}, method: "patch") do %>
+<%= text_area_tag :content, @comment.content %><br>
+<%= submit_tag("Edit Comment") %>
+<% end %>
+<br><br>
+<%= link_to "Delete Comment", comment_path, method: :delete,  data: { confirm: "Are you sure you want to delete this comment?" }, :class => 'btn btn-danger btn-mini' %>
