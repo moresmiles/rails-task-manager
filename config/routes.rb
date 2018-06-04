@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :destroy]
 
-  resources :groups, only: [:new, :create, :edit, :update, :destroy] do
+  resources :groups, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     resources :lists, only: [:new, :create, :edit, :update, :show, :destroy]
   end
     resources :tasks, only: [:edit, :update, :destroy]
