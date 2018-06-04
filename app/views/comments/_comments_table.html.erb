@@ -1,3 +1,4 @@
+<div id="commentsTable">
 <h1> Comments </h1>
 <table class="table table-striped table-bordered">
   <thead>
@@ -9,10 +10,11 @@
   <tbody>
     <tr>
       <% @list.comments.each do |comment| %>
-      <td> <%=comment.user.email%> </td>
-      <td> <%=comment.content%> </td>
+        <td> <%=comment.user.email%>  </td>
+        <td> <%=comment.content%> </td>
       <th> <%= link_to 'edit comment', edit_comment_path(comment) if comment.user == current_user %></th>
     </tr>
     <% end %>
   </tbody>
 </table>
+</div>
