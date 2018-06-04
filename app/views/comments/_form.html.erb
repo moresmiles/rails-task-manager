@@ -1,6 +1,6 @@
 <h3> New Comment </h3>
-<%= form_tag({controller: "comments", action: "create"}, method: "post") do %>
-<%= hidden_field_tag :list_id, @list.id %>
-<%= text_area_tag :content %>
-<%= submit_tag("Create New Comment") %>
-<% end %>
+<%= form_for (Comment.new) do |f| %>
+<%= f.hidden_field :list_id, value: @list.id %>
+<%= f.text_area :content %>
+<%= f.submit %>
+<%end%>
