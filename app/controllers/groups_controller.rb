@@ -1,5 +1,21 @@
 class GroupsController < ApplicationController
 
+  def index
+    @groups = current_user.groups
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @groups}
+    end
+  end
+
+  def show
+      @group = Group.find(params[:id])
+      respond_to do |format|
+        format.html { render :show }
+        format.json { render json: @group}
+      end
+    end
+
   def new
     @group = Group.new
     2.times do
