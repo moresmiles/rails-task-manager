@@ -16,4 +16,5 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require groups
+//= require comments
 //= require_tree .
