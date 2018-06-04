@@ -1,14 +1,12 @@
 class CommentsController < ApplicationController
 
   def create
-    @list = List.find(params[:list_id])
-    @comment = Comment.new(comment_params)
-    @comment.user_id = current_user.id
-    @comment.list_id = @list.id
+    @list = List.find(params[:comment][:list_id])
+    @comment = @list.comments.build(content: params[:comment][:content], user_id: current_user.id)
     if @comment.save
-      redirect_to group_list_path(@list.group, @list)
+        render json: @comment, status: 201
     else
-      flash[:alert] = "Your comment could not be saved!"
+      flash[:alert] = "Your comment could not be saved"
       redirect_to group_list_path(@list.group, @list)
     end
   end
@@ -19,7 +17,7 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])
-    @comment.update(comment_params)
+    @comment.update(content: params[:content])
     redirect_to group_list_path(@comment.list.group, @comment.list)
   end
 
@@ -32,6 +30,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.permit(:content, :list_id, :user_id)
+    params.permit(:comment)
   end
 end
