@@ -1,5 +1,6 @@
 $(function () {
   $('#showGroups').click(getGroups)
+  $('#nextGroup').on('click', '.option', showNextGroup)
 });
 
   class Group {
@@ -20,3 +21,25 @@ $(function () {
     })
   })
 };
+
+function showNextGroup(event){
+  event.preventDefault();
+
+  $.getJSON(this.href, function(data){
+
+    let name = data.name
+    let users = data.users
+    let lists = data.lists
+
+    $('#groupName').html(name)
+
+    $('#groupUsers li').remove();
+    users.forEach(user => {
+      $('#groupUsers').append(`<li class="list-group-item"> ${user.email} </li>`)
+    })
+    $('#groupLists li').remove();
+    lists.forEach(list => {
+      $('#groupLists').append(`<li class="list-group-item"><a href="/groups/${list.group_id}/lists/${list.id}"> ${list.name} </a></li>`)
+    })
+  })
+}
