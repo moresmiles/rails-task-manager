@@ -3,7 +3,7 @@
   <div class="card-deck mb-3 text-center">
     <div class="card mb-4 box-shadow">
       <div class="card-header">
-        <h4 class="my-0 font-weight-normal"><%=@group.name%></h4>
+        <h4 id="groupName" class="my-0 font-weight-normal"><%=@group.name%></h4>
       </div>
       <div class="row">
       <div class="col-sm-6">
@@ -11,19 +11,24 @@
             <h5 class="card-title">People in this group</h5>
             <ul class="list-group list-group-flush">
             <% @group.users.each do |user|%>
-            <li class="list-group-item"><%=user.email%> </li>
+            <div id="groupUsers">
+            <li class="list-group-item"> <%=user.email%> </li>
+            </div>
             <% end %>
             </ul>
             <br>
             <a href="<%=edit_group_path(@group)%>" class="btn btn-primary">Edit this group</a>
         </div>
       </div>
+
       <div class="col-sm-6">
           <div class="card-body">
             <h5 class="card-title">Shared lists</h5>
             <ul class="list-group list-group-flush">
             <% @group.lists.each do |list|%>
+            <div id="groupLists">
             <li class="list-group-item"><%=link_to list.name, group_list_path(@group, list) %></li>
+            </div>
             <% end %>
             </ul>
             <br>
