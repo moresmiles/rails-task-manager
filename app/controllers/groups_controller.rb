@@ -9,12 +9,14 @@ class GroupsController < ApplicationController
   end
 
   def show
-      @group = Group.find(params[:id])
-      respond_to do |format|
-        format.html { render :show }
-        format.json { render json: @group}
-      end
+    @group = Group.find(params[:id])
+    groups = current_user.groups.order('groups.id ASC')
+    @next_group = groups.where('groups.id > ?', @group.id).first
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @group}
     end
+  end
 
   def new
     @group = Group.new
