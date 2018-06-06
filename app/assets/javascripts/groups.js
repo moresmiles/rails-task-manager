@@ -13,8 +13,8 @@ class Group {
   }
 }
 
-function getGroups(){
-  $.getJSON('http://localhost:3000/groups', function(data){
+const getGroups = () => {
+  $.getJSON('http://localhost:3000/groups', (data) => {
     data.forEach(group => {
       let createdGroup = new Group(group.name, group.id)
       $('#groupsList').append(createdGroup.renderGroup())

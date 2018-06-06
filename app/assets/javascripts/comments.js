@@ -3,7 +3,7 @@ $(function(){
     e.preventDefault();
     let values = $(this).serialize();
     let posting = $.post(this.action, values)
-      posting.done(function(data) {
+      posting.done(data => {
         let newComment = new Comment(data.id, data.user.email, data.content)
         $("#commentsTable tbody").append(newComment.renderComment());
       })
