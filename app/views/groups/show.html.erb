@@ -38,5 +38,7 @@
     </div>
   </div>
   <div class="text-center">
-    <a href="/groups/<%=@next_group.id%>" id="nextGroup" class='btn btn-primary btn-mini'> Next Group</a>
+      <%if @next_group%>
+        <a href="/groups/<%=@next_group.id%>" id="nextGroup" class='btn btn-primary btn-mini'> Next Group</a>
+      <%end%>
   </div>
