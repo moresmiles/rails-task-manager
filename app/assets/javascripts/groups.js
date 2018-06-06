@@ -1,19 +1,19 @@
 $(function () {
-  $('#showGroups').click(getGroups)
-  $('#nextGroup').on('click', '.option', showNextGroup)
+  $('#showGroups').one('click', getGroups)
+  $('#nextGroup').on('click', showNextGroup)
 });
 
-  class Group {
-    constructor(name, id){
-      this.name = name;
-      this.id = id;
-    }
-    renderGroup() {
-      return `<a href="http://localhost:3000/groups/${this.id}"><h5>${this.name}</h5></a>`;
-    }
+class Group {
+  constructor(name, id){
+    this.name = name;
+    this.id = id;
   }
+  renderGroup() {
+    return `<a href="http://localhost:3000/groups/${this.id}"><h5>${this.name}</h5></a>`;
+  }
+}
 
-  function getGroups(){
+function getGroups(){
   $.getJSON('http://localhost:3000/groups', function(data){
     data.forEach(group => {
       let createdGroup = new Group(group.name, group.id)
@@ -21,6 +21,15 @@ $(function () {
     })
   })
 };
+  //fetch('http://localhost:3000/groups')
+  //  .then(function(res){
+      //return res.json()
+  //})
+    //.then(function(data){
+      //const createdGroup = new Group(data.name, data.id)
+      //$('#groupsList').append(createdGroup.renderGroup())
+  //})
+
 
 function showNextGroup(event){
   event.preventDefault();
